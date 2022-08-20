@@ -3,7 +3,7 @@ import json
 import time
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Literal, Union
+from typing import Dict, List, Union
 
 import aicrowd_gym
 import numpy as np
@@ -38,8 +38,8 @@ class RolloutResults:
 
         return dict(
             num_steps=len(self.rewards),
-            non_zero_reward_steps=non_zero_idx.tolist(),
-            non_zero_rewards=non_zero_vals.tolist(),
+            non_zero_reward_steps=list(non_zero_idx),
+            non_zero_rewards=list(non_zero_vals.tolist),
             items=self.items,
         )
 
@@ -55,7 +55,7 @@ class RolloutResults:
     @staticmethod
     def list_to_json(results: List["RolloutResults"], json_file: Union[Path, str]):
         results = [result.to_dict() for result in results]
-        json.dump(results, open(json_file, "w"))
+        json.dump(results, open(json_file, "w"), indent=2)
 
     @staticmethod
     def list_from_json(json_file_or_dir: Union[Path, str]) -> List["RolloutResults"]:

@@ -8,7 +8,7 @@ import minerl
 from config import EVAL_EPISODES, EVAL_MAX_STEPS
 from openai_vpt.agent import MineRLAgent
 
-coloredlogs.install(logging.DEBUG)
+coloredlogs.install(logging.WARN)
 
 MINERL_GYM_ENV = 'MineRLObtainDiamondShovel-v0'
 MODEL = 'data/VPT-models/2x.model'
